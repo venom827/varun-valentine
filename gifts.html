@@ -14,7 +14,10 @@
 </head>
 <body>
 
-  <!-- Background hearts -->
+  <!-- Background music -->
+  <audio id="bgMusic" src="assets/audio/bg.mp3" loop></audio>
+
+  <!-- Falling hearts -->
   <div id="background-hearts">
     <span>❤</span><span>❤</span><span>❤</span><span>❤</span>
     <span>❤</span><span>❤</span><span>❤</span><span>❤</span>
@@ -25,73 +28,102 @@
 
     <p class="subtitle soft">the kind that matter</p>
     <h2>Things I Wanna Gift You</h2>
-    <p class="subtitle">
-      Just some little thoughts
-    </p>
+    <p class="subtitle">Just some little thoughts</p>
 
-    <!-- Gift feed (VIDEOS ONLY) -->
     <div class="gift-feed">
 
-      <!-- Video Gift 1 -->
       <div class="gift-card tilt-left">
-        <video
-          src="assets/gifts/1.mp4"
-          muted
-          loop
-          autoplay
-          playsinline
-        ></video>
-        <br>
+        <video class="gift-video" src="assets/videos/1.mp4" preload="metadata"></video>
+        <button class="play-btn" data-music="assets/audio/1.mp3">▶ Play this moment</button>
         <p>[Something cozy for quiet days]</p>
       </div>
 
-      <!-- Video Gift 2 -->
       <div class="gift-card tilt-right">
-        <video
-          src="assets/gifts/2.mp4"
-          muted
-          loop
-          autoplay
-          playsinline
-        ></video>
-        <br>
+        <video class="gift-video" src="assets/videos/2.mp4" preload="metadata"></video>
+        <button class="play-btn" data-music="assets/audio/2.mp3">▶ Play this moment</button>
         <p>[A small surprise, just because]</p>
       </div>
 
-      <!-- Video Gift 3 -->
       <div class="gift-card tilt-left">
-        <video
-          src="assets/gifts/3.mp4"
-          muted
-          loop
-          autoplay
-          playsinline
-        ></video>
-        <br>
+        <video class="gift-video" src="assets/videos/3.mp4" preload="metadata"></video>
+        <button class="play-btn" data-music="assets/audio/3.mp3">▶ Play this moment</button>
         <p>[Something that reminds me of you]</p>
       </div>
 
-      <!-- Video Gift 4 -->
       <div class="gift-card tilt-right">
-        <video
-          src="assets/gifts/4.mp4"
-          muted
-          loop
-          autoplay
-          playsinline
-        ></video>
-        <br>
+        <video class="gift-video" src="assets/videos/4.mp4" preload="metadata"></video>
+        <button class="play-btn" data-music="assets/audio/4.mp3">▶ Play this moment</button>
         <p>[A memory we can create together]</p>
       </div>
 
     </div>
 
-    <!-- CTA -->
-    <a href="letter.html" class="btn">
-      One last thing 💗
+    <a href="likes.html" class="btn">
+      What I like about you 💗
     </a>
 
   </div>
+
+  <script>
+    const bgMusic = document.getElementById("bgMusic");
+
+    let currentVideo = null;
+    let currentAudio = null;
+    let currentButton = null;
+
+    document.querySelectorAll(".play-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".gift-card");
+        const video = card.querySelector(".gift-video");
+        const musicSrc = btn.dataset.music;
+
+        // SAME button → stop
+        if (currentButton === btn) {
+          video.pause();
+          video.currentTime = 0;
+
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+
+          btn.textContent = "▶ Play this moment";
+
+          currentVideo = null;
+          currentAudio = null;
+          currentButton = null;
+          return;
+        }
+
+        // Stop previous
+        if (currentVideo) {
+          currentVideo.pause();
+          currentVideo.currentTime = 0;
+        }
+
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
+
+        if (currentButton) {
+          currentButton.textContent = "▶ Play this moment";
+        }
+
+        // Stop background music
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+
+        // Play new
+        video.play();
+        currentVideo = video;
+
+        currentAudio = new Audio(musicSrc);
+        currentAudio.play();
+
+        btn.textContent = "⏸ Stop this moment";
+        currentButton = btn;
+      });
+    });
+  </script>
 
 </body>
 </html>
