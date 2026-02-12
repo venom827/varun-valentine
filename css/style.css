@@ -806,3 +806,17 @@ p {
   display: none;
 }
 
+/* VIDEO INSIDE GIFT CARD — POLISHED LOOK */
+.gift-card video {
+  width: 100%;
+  display: block;
+  border-radius: 18px;          /* smoother corners */
+  overflow: hidden;
+  background: #000000a8;             /* prevents white flash */
+  object-fit: cover;
+
+  /* soft inset frame feel */
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.6),
+    0 10px 22px rgba(0,0,0,0.18);
+}
