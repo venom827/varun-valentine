@@ -883,17 +883,15 @@ video {
 /* Slightly faster + visible fall */
 @keyframes heartFall {
   0% {
-    transform: translateY(-5vh);
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
+    transform: translateY(-10vh);
+    opacity: 1;        /* ← IMPORTANT */
   }
   100% {
     transform: translateY(120vh);
     opacity: 0;
   }
 }
+
 
 /* ---------- PAGE LAYERING ---------- */
 .page {
