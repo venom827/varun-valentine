@@ -978,3 +978,64 @@ p {
     text-align: center;
   }
 }
+
+/* =========================
+   PLAY BUTTON — POLISHED PINK PILL
+========================= */
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+
+  margin: 1rem auto 0.4rem;
+  padding: 0.9rem 1.6rem;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  color: white;
+  background: linear-gradient(
+    135deg,
+    #ff6f9f,
+    #ff4f88
+  );
+
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 22px rgba(255, 79, 136, 0.35),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+/* Hover / tap feel */
+.play-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 28px rgba(255, 79, 136, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+/* Pressed state (mobile-friendly) */
+.play-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 14px rgba(255, 79, 136, 0.35),
+    inset 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Optional: play icon spacing fix */
+.play-btn::before {
+  content: "▶";
+  font-size: 0.9rem;
+}
