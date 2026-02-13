@@ -1111,15 +1111,15 @@ p {
 }
 
 /* FIX START BUTTON WRAPPING ON MOBILE */
-#startBtn {
+#startScreen {
   width: auto;
-  max-width: 90vw;          /* allow breathing room */
+  max-width: 100vw;          /* allow breathing room */
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-#startBtn span {
+#startScreen span {
   white-space: nowrap;      /* FORCE single line */
   display: inline-block;
 
