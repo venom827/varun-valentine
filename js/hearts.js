@@ -8,45 +8,46 @@ function createHeart(startInside = false) {
   heart.className = "heart";
   heart.textContent = "❤";
 
-  // Horizontal position
+  // Random horizontal position
   heart.style.left = Math.random() * 100 + "vw";
 
-  // Size
-  const size = 18 + Math.random() * 20;
+  // Size variation
+  const size = 16 + Math.random() * 18;
   heart.style.fontSize = size + "px";
 
-  // Speed (noticeable)
-  const duration = 6 + Math.random() * 4;
+  // Faster fall
+  const duration = 5 + Math.random() * 4; // 5–9s
   heart.style.animationDuration = duration + "s";
 
-  // THIS is the key 👇
   if (startInside) {
-    // Already falling on screen
+    // Start already on screen
     heart.style.top = Math.random() * 100 + "vh";
 
-    // Start animation mid-way so it is MOVING immediately
+    // Force animation to already be running
     heart.style.animationDelay = `-${Math.random() * duration}s`;
   }
 
   container.appendChild(heart);
 
-  // Cleanup
-  setTimeout(() => heart.remove(), duration * 1000);
+  // Cleanup (extra buffer for negative delay)
+  setTimeout(() => {
+    heart.remove();
+  }, (duration + 1) * 1000);
 }
 
 /* -------------------------
-   INSTANT FIRST FRAME
+   IMMEDIATE VISUAL FILL
 ------------------------- */
-// Big burst IMMEDIATELY
-for (let i = 0; i < 30; i++) {
+// Hearts visible the INSTANT page loads
+for (let i = 0; i < 40; i++) {
   createHeart(true);
 }
 
 /* -------------------------
-   CONTINUOUS FALL
+   CONTINUOUS RAIN (FAST)
 ------------------------- */
 setInterval(() => {
-  for (let i = 0; i < 10; i++) {
-    createHeart(false);
-  }
-}, 1);
+  createHeart(false);
+  createHeart(false);
+  createHeart(false);
+}, 100); // ~16 hearts/sec
