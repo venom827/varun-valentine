@@ -49,4 +49,4 @@ setInterval(() => {
   for (let i = 0; i < 10; i++) {
     createHeart(false);
   }
-}, 500);
+}, 1);
